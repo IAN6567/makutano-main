@@ -8,7 +8,9 @@ const connection = mysql.createConnection({
   database: "socialapp",
   port: 3306,
 });
-
+//middlewares
+app.use(express.urlencoded({ extended: true })); //to
+//parse incoing/request from data
 //routes
 app.get("/", (req, res) => {
   //render posts
@@ -19,6 +21,21 @@ app.get("/", (req, res) => {
     res.render("index.ejs", { posts: results });
   });
 });
+app.post("/newpost", (req, res) => {
+  //sql insers into
+  console.log(req.body.content);
+  connection.query(
+    `INSERT INTO posts(content,postowner)VALUES("${req.body.content})",2)`,
+    (dberr) => {
+      if (dberr) {
+        return res.status(500).send("Error storing data" + dberr);
+      }
+      res.redirect("/");
+    }
+  );
+});
+//try adding a new user from a submission  create newuser.js file,newuser get route and newuser post route
+
 // routes
 app.get("/", (req, res) => {
   res.render("index.ejs");
