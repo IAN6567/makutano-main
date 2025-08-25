@@ -7,7 +7,14 @@
   </head>
   <body>
     <h1>Makutano App</h1>
+    <h2>whats on your mind</h2>
+    <form action="http://localhost:3003/newpost"method="post">
+      <textarea name="content" id="content" cols="30"rows="10"></textarea>
+      <br>
+      <button type="submit">Post </button>
+    </form>
     <h2>Recent posts</h2>
+    <hr>
     <section class="posts">
       <%posts.forEach(post=> {%>
       <article>
@@ -17,6 +24,7 @@
           posted on <%= post.createdat.toLocaleDateString()%>
         </p>
       </article>
+      <hr>
       <%})%>
     </section>
   </body>
