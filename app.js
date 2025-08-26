@@ -35,7 +35,14 @@ app.post("/newpost", (req, res) => {
   );
 });
 //try adding a new user from a submission  create newuser.js file,newuser get route and newuser post route
-
+app.get("/newuser",(req,res)=>{
+  res.render("newuser.ejs");
+})
+app.post("/newuser",(req,res)=>{
+  console.log(req.body);
+  const{fullname,email,password}=req.body;
+  connection.query("INSERT INTO users(fullname,email,password)values(`${fullname}")
+})
 // routes
 app.get("/", (req, res) => {
   res.render("index.ejs");
